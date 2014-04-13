@@ -1,0 +1,7 @@
+{
+    "require": {
+        "zendframework/zendframework": "*",
+        "symfony/dom-crawler": "*",
+        "symfony/css-selector": "*"
+    }
+}
