@@ -52,4 +52,31 @@ class Calculator
     {
         return $x / $y;
     }
+
+    /**
+     * Retorna o fatorial
+     *
+     * @param int $value
+     * @return int
+     */
+    public function fatorial($value)
+    {
+        $fat = 1;
+        for ($i = 1; $i<=$value;$i++) {
+            $fat *= $i;
+        }
+        return $fat;
+    }
+
+    /**
+     * Retorna a potência de um número
+     *
+     * @param int $base
+     * @param int $exp
+     * @return int
+     */
+    public function potencia($base, $exp)
+    {
+        return pow($base, $exp);
+    }
 }

@@ -1,9 +1,10 @@
 <?php
 require_once('../../vendor/autoload.php');
 
-$client = new Zend\Soap\Client('http://local.php5/soap/server.php?wsdl');
+//ini_set("soap.wsdl_cache_enabled", 0);
+//ini_set('soap.wsdl_cache_ttl', '0');
 
-var_dump($client->call('multiply', array('10','2')));
-var_dump($client->call('add', array('10','2')));
-var_dump($client->add(1,2));
-var_dump($client->getFunctions());
+$client = new Zend\Soap\Client('http://local.php5/soap/server.wsdl');
+
+Zend\Debug\Debug::dump($client->call('fatorial', 5), 'fatorial');
+Zend\Debug\Debug::dump($client->call('potencia', array(2, 5)), 'potencia');
