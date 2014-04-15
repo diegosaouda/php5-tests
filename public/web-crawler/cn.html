@@ -1,0 +1,508 @@
+<html>
+<head>
+    <meta http-equiv="expires" content="0">
+    <meta http-equiv="cache-control" content="private">
+    <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+    <script language="javascript" type="text/javascript" src="../../imagens/action.js"></script>
+    <title>ComprasNet</title>
+    <link rel="stylesheet" href="../../imagens/style1.css" type="text/css">
+    <script language="javascript">
+        function Dados_Pregao(pCod, pTp) {
+            var url = "dados_pregao.asp?prgcod=" + pCod + "&Tipo=" + pTp
+            window.open(url, 'DadosPregao', 'maximized=yes, screenX=250, screenY=0, toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=no,copyhistory=no,width=550,height=400');
+            return false;
+        }
+        function Motivo_Suspensao(pCod, pOpc) {
+            var url = "motiv_suspensao.asp?prgCod=" + pCod + "&Opc=" + pOpc
+            window.open(url, 'Suspensao', 'maximized=yes, screenX=250, screenY=0, toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=no,copyhistory=no,width=550,height=400');
+            return false;
+        }
+        function Avisos_Pregao(pCod, pOrigem) {
+            var url = "avisos1.asp?prgCod=" + pCod + "&Origem=Avisos&Tipo=A"
+            window.open(url, 'Avisos', 'maximized=yes, screenX=250, screenY=0, toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=no,copyhistory=no,width=550,height=400');
+            return false;
+        }
+        function Esclar_Pregao(pCod, pOrigem) {
+            var url = "avisos1.asp?prgCod=" + pCod + "&Origem=Avisos&Tipo=E"
+            window.open(url, 'Escareciemtos', 'maximized=yes, screenX=250, screenY=0, toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=no,copyhistory=no,width=550,height=400');
+            return false;
+        }
+        function Impugn_Pregao(pCod, pOrigem) {
+            var url = "avisos1.asp?prgCod=" + pCod + "&Origem=Avisos&Tipo=I"
+            window.open(url, 'Impugnacoes', 'maximized=yes, screenX=250, screenY=0, toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=no,copyhistory=no,width=550,height=400');
+            return false;
+        }
+        function Intencao_Recurso(pprgCod) {
+            var url = "Intencao_Recurso.asp?prgCod=" + pprgCod;
+            location.href = url;
+            return false;
+        }
+        function lista_itens(prgCod, numprpXsl) {
+            var url = "lista_itens.asp?Opc=0&rdTpPregao=E&lstSrp=T&lstICMS=T&uf=&numprp=0&co_uasg=&dt_entrega=15/04/2014&dt_abertura=&lstSituacao=0&lstTipoSuspensao=0&prgCod=" + prgCod + "&numprpXsl=" + numprpXsl + "&pagina=1"
+            location.href = url;
+        }
+        function lista_itensPres(prgCod) {
+            var url = "lista_itensPres.asp?Opc=0&rdTpPregao=E&lstSrp=T&lstICMS=T&uf=&numprp=0&co_uasg=&dt_entrega=15/04/2014&dt_abertura=&lstSituacao=0&lstTipoSuspensao=0&prgCod=" + prgCod;
+            location.href = url;
+        }
+
+        //var msg = 'Função desativada!';
+
+        //ESSAS SERÃO AS TECLAS DESABILITADAS
+        var asciiF2 = 113;
+        var asciiF3 = 114;
+        var asciiF4 = 115;
+        var asciiF5 = 116;
+        var asciiF6 = 117;
+        var asciiF11 = 122;
+        var asciiF12 = 123;
+        var asciiF1 = 112;
+
+        //ie has to block in the key down
+        if (document.all) {
+            document.onkeydown = onKeyPress;
+            //NS and mozilla have to block in the key press
+        } else if (document.layers || document.getElementById) {
+            document.onkeypress = onKeyPress;
+        }
+
+        function onKeyPress(evt) {
+            window.status = '';
+            //get the event object
+            var oEvent = (window.event) ? window.event : evt;
+
+            //hmmm in mozilla this is jacked, so i have to record these seperate
+            //what key was pressed
+            var nKeyCode = oEvent.keyCode ? oEvent.keyCode : oEvent.which ? oEvent.which : void 0;
+            var bIsFunctionKey = false;
+
+            //hmmm in mozilla the keycode would contain a function key ONLY IF the charcode IS 0
+            //else key code and charcode read funny, the charcode for 't'
+            //returns 116, which is the same as the ascii for F5
+            //SOOO,... to check if a the keycode is truly a function key,
+            //ONLY check when the charcode is null OR 0, IE returns null, mozilla returns 0
+            if (oEvent.charCode == null || oEvent.charCode == 0) {
+                bIsFunctionKey = (nKeyCode >= asciiF1 && nKeyCode <= asciiF12)
+            }
+
+            //convert the key to a character, makes for more readable code
+            var sChar = String.fromCharCode(nKeyCode).toUpperCase();
+
+            //get the active tag that has the focus on the page, and its tag type
+            var oTarget = (oEvent.target) ? oEvent.target : oEvent.srcElement;
+            var sTag = oTarget.tagName.toLowerCase();
+            var sTagType = oTarget.getAttribute("type");
+
+            var bAltPressed = (oEvent.altKey) ? oEvent.altKey : oEvent.modifiers & 1 > 0;
+            var bShiftPressed = (oEvent.shiftKey) ? oEvent.shiftKey : oEvent.modifiers & 4 > 0;
+            var bCtrlPressed = (oEvent.ctrlKey) ? oEvent.ctrlKey : oEvent.modifiers & 2 > 0;
+
+            var bRet = true; //assume true as that will be the case most times
+            //alert (nKeyCode + ' ' + sChar + ' ' + sTag + ' ' + sTagType + ' ' + bShiftPressed + ' ' + bCtrlPressed + ' ' + bAltPressed);
+
+            if (sTagType != null) {
+                sTagType = sTagType.toLowerCase();
+            }
+
+            //allow these keys inside a text box
+            //if  (sTag == "textarea" || (sTag == "input" && (sTagType == "text" || sTagType == "password")) && ((bCtrlPressed && (nKeyCode == asciiLeftArrow || nKeyCode == asciiRightArrow)))){
+            //    return true;
+            //}else if(bAltPressed && (nKeyCode == asciiLeftArrow || nKeyCode == asciiRightArrow)){ // block alt + left or right arrow
+            //    bRet = false;
+            //}else if(bCtrlPressed && (sChar == 'A' || sChar == 'C' || sChar == 'V' || sChar == 'X')){ // ALLOW cut, copy and paste, and SELECT ALL
+            //    bRet = true;
+            //}else
+            if (bIsFunctionKey) { // Capture and stop these keys
+                bRet = false;
+            } else if (bCtrlPressed && (sChar == 'R')) { // block Control + R
+                bRet = false;
+            }
+
+            if (!bRet) {
+                try {
+                    oEvent.returnValue = false;
+                    oEvent.cancelBubble = true;
+
+                    if (document.all) { //IE
+                        oEvent.keyCode = 0;
+                    } else { //NS
+                        oEvent.preventDefault();
+                        oEvent.stopPropagation();
+                    }
+                    //alert(msg);
+                } catch (ex) {
+                    //alert(msg);
+                }
+            }
+            return bRet;
+        }
+    </script>
+</head>
+<body onload="setMouseCursortoHand('type','button'); javascript:{if(parent.frames[0]&amp;&amp;parent.frames['nav'].Go)parent.frames['nav'].Go()};"
+      bgcolor="#ffffff" text="#000000" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" class="body_2">
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tbody>
+    <tr>
+        <td colspan="2"><img height="5" src="/imagens/x2_dot.gif" width="5"></td>
+    </tr>
+    <tr>
+        <td valign="top">
+            <table width="100%" border="0" cellspacing="1" cellpadding="2">
+                <tbody>
+                <tr>
+                    <td width="5"><img height="2" src="../../imagens/x2_dot.gif" width="2"></td>
+                    <td>
+                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                            <tbody>
+                            <tr>
+                                <td colspan="2"><img height="23" src="../../imagens/T_aconpanhamento_pregao.gif"
+                                                     width="208" align="absBottom"></td>
+                            </tr>
+                            <tr>
+                                <td width="5"><img height="3" src="../../imagens/risco.gif" width="5"></td>
+                                <td width="100%"><img height="3" src="../../imagens/risco2.gif" width="100%"></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                    <td width="5"><img height="2" src="../../imagens/x2_dot.gif" width="2"></td>
+                </tr>
+                </tbody>
+            </table>
+            <table border="0" cellspacing="1" cellpadding="2" width="100%">
+                <tbody>
+                <tr>
+                    <td valign="top" align="right" width="23"><img height="14" src="../../imagens/tm_bullet4.gif"
+                                                                   width="6"></td>
+                    <td class="tex3"><a id="4">Clique no número do pregão para ver detalhes</a></td>
+                </tr>
+                <tr>
+                    <td valign="top" align="right" width="23">&nbsp;</td>
+                    <td class="tex3">
+                        <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                            <tbody>
+                            <tr valign="top">
+                                <td rowspan="3" bgcolor="white">
+                                    <table border="0" width="100%">
+                                        <form id="form1" name="form1"></form>
+                                        <tbody>
+
+
+                                        <tr>
+                                            <td colspan="2" class="tex3a" nowrap=""><br>Pregões Eletrônicos Agendados
+																<span class="mensagem">
+
+																</span>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td width="1%" class="tex3" nowrap="">Situação: Fechado para Proposta</td>
+                                            <td id="QtdPregoes" valign="bottom" class="mensagem">= 3 pregões</td>
+                                        </tr>
+
+
+                                        <tr>
+                                            <td colspan="2">
+                                                <table width="100%" border="0" class="td" cellpadding="2"
+                                                       cellspacing="1">
+                                                    <tbody>
+                                                    <tr class="tex3b" align="center">
+                                                        <td>Nº do Pregão</td>
+                                                        <td nowrap="nowrap">Cód. UASG <br> (Unid. de Compra)</td>
+                                                        <td nowrap="nowrap">Nome da UASG <br> (Unid. de Compra)</td>
+                                                        <td>Data/hora início envio PROPOSTAS</td>
+                                                        <td>Data/hora fim envio PROPOSTAS</td>
+                                                        <td>Informações do Pregão</td>
+                                                    </tr>
+                                                    <tr bgcolor="#FFFFFF" valign="middle" class="tex3a" align="center">
+                                                        <td><a href="javascript:void(0)"
+                                                               onclick="Dados_Pregao(476958, 'E');">62014</a></td>
+                                                        <td>120059</td>
+                                                        <td>IV COMANDO AEREO REGIONAL</td>
+                                                        <td>15/04/2014 13:00</td>
+                                                        <td>29/04/2014 13:30</td>
+                                                        <td>
+                                                            <br>
+                                                        </td>
+                                                    </tr>
+                                                    <tr bgcolor="#FFFFFF" valign="middle" class="tex3a" align="center">
+                                                        <td><a href="javascript:void(0)"
+                                                               onclick="Dados_Pregao(477147, 'E');">122014</a></td>
+                                                        <td>974003</td>
+                                                        <td>TRIBUNAL DE CONTAS DO DISTRITO FEDERAL</td>
+                                                        <td>15/04/2014 13:00</td>
+                                                        <td>30/04/2014 14:30</td>
+                                                        <td>
+                                                            <br>
+                                                        </td>
+                                                    </tr>
+                                                    <tr bgcolor="#FFFFFF" valign="middle" class="tex3a" align="center">
+                                                        <td><a href="javascript:void(0)"
+                                                               onclick="Dados_Pregao(477025, 'E');">12014</a></td>
+                                                        <td>160222</td>
+                                                        <td>5. BATALHAO DE SUPRIMENTO</td>
+                                                        <td>15/04/2014 14:00</td>
+                                                        <td>29/04/2014 10:00</td>
+                                                        <td>
+                                                            <br>
+                                                        </td>
+                                                    </tr>
+                                                    </tbody>
+                                                </table>
+
+                                            </td>
+                                        </tr>
+
+
+                                        <tr>
+                                            <td colspan="2">
+                                                <br><input type="button" name="voltar" value="Voltar" class="texField2"
+                                                           onclick="javascript:location.href='Lista_Pregao_Filtro.asp?Opc=0'; return false;">
+                                            </td>
+                                        </tr>
+                                        </tbody>
+
+                                    </table>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+
+<script language="Javascript">
+    var preg = ' pregões';
+
+    document.getElementById('QtdPregoes').innerHTML = '= 3' + preg;
+
+</script>
+
+
+<div style="position: absolute; visibility: hidden; background-color: black; z-index: 102; width: 122px; height: 127px; top: 0px; left: 0px;">
+    <div style="position: absolute; visibility: inherit; overflow: hidden; cursor: pointer; background-color: rgb(244, 205, 150); color: black; font-family: arial, 'comic sans ms', technical; font-size: 11px; font-weight: normal; font-style: normal; text-align: left; width: 115px; height: 17px; padding-left: 5px; padding-top: 3px; left: 1px; top: 1px;">
+        Leis
+    </div>
+    <div style="position: absolute; visibility: inherit; overflow: hidden; cursor: pointer; background-color: rgb(244, 205, 150); color: black; font-family: arial, 'comic sans ms', technical; font-size: 11px; font-weight: normal; font-style: normal; text-align: left; width: 115px; height: 17px; padding-left: 5px; padding-top: 3px; left: 1px; top: 22px;">
+        Medidas Provisórias
+    </div>
+    <div style="position: absolute; visibility: inherit; overflow: hidden; cursor: pointer; background-color: rgb(244, 205, 150); color: black; font-family: arial, 'comic sans ms', technical; font-size: 11px; font-weight: normal; font-style: normal; text-align: left; width: 115px; height: 17px; padding-left: 5px; padding-top: 3px; left: 1px; top: 43px;">
+        Decretos
+    </div>
+    <div style="position: absolute; visibility: inherit; overflow: hidden; cursor: pointer; background-color: rgb(244, 205, 150); color: black; font-family: arial, 'comic sans ms', technical; font-size: 11px; font-weight: normal; font-style: normal; text-align: left; width: 115px; height: 17px; padding-left: 5px; padding-top: 3px; left: 1px; top: 64px;">
+        Instruções Normativas
+    </div>
+    <div style="position: absolute; visibility: inherit; overflow: hidden; cursor: pointer; background-color: rgb(244, 205, 150); color: black; font-family: arial, 'comic sans ms', technical; font-size: 11px; font-weight: normal; font-style: normal; text-align: left; width: 115px; height: 17px; padding-left: 5px; padding-top: 3px; left: 1px; top: 85px;">
+        Portarias
+    </div>
+    <div style="position: absolute; visibility: inherit; overflow: hidden; cursor: pointer; background-color: rgb(244, 205, 150); color: black; font-family: arial, 'comic sans ms', technical; font-size: 11px; font-weight: normal; font-style: normal; text-align: left; width: 115px; height: 17px; padding-left: 5px; padding-top: 3px; left: 1px; top: 106px;">
+        Resoluções
+    </div>
+</div>
+<div style="position: absolute; visibility: hidden; background-color: black; z-index: 102; width: 152px; height: 118px; top: 0px; left: 0px;">
+    <div style="position: absolute; visibility: inherit; overflow: hidden; cursor: pointer; background-color: rgb(244, 205, 150); color: black; font-family: arial, 'comic sans ms', technical; font-size: 11px; font-weight: normal; font-style: normal; text-align: left; width: 145px; height: 17px; padding-left: 5px; padding-top: 3px; left: 1px; top: 1px;">
+        Anteprojeto de lei
+    </div>
+    <div style="position: absolute; visibility: inherit; overflow: hidden; cursor: pointer; background-color: rgb(244, 205, 150); color: black; font-family: arial, 'comic sans ms', technical; font-size: 11px; font-weight: normal; font-style: normal; text-align: left; width: 145px; height: 17px; padding-left: 5px; padding-top: 3px; left: 1px; top: 22px;">
+        Termo de Adesão
+    </div>
+    <div style="position: absolute; visibility: inherit; overflow: hidden; cursor: pointer; background-color: rgb(244, 205, 150); color: black; font-family: arial, 'comic sans ms', technical; font-size: 11px; font-weight: normal; font-style: normal; text-align: left; width: 145px; height: 17px; padding-left: 5px; padding-top: 3px; left: 1px; top: 43px;">
+        Informativo ComprasNet
+    </div>
+    <div style="position: absolute; visibility: inherit; overflow: hidden; cursor: pointer; background-color: rgb(244, 205, 150); color: black; font-family: arial, 'comic sans ms', technical; font-size: 11px; font-weight: normal; font-style: normal; text-align: left; width: 145px; height: 29px; padding-left: 5px; padding-top: 3px; left: 1px; top: 64px;">
+        Rol de Responsáveis-Conformidade
+    </div>
+    <div style="position: absolute; visibility: inherit; overflow: hidden; cursor: default; background-color: rgb(244, 205, 150); color: black; font-family: arial, 'comic sans ms', technical; font-size: 11px; font-weight: normal; font-style: normal; text-align: left; width: 145px; height: 17px; padding-left: 5px; padding-top: 3px; left: 1px; top: 97px;">
+        Manuais<img src="/imagens/tri.gif" style="position: absolute; width: 5px; height: 10px; top: 5px; left: 143px;">
+    </div>
+</div>
+<div style="position: absolute; visibility: hidden; background-color: black; z-index: 103; width: 202px; height: 169px; top: 0px; left: 0px;">
+    <div style="position: absolute; visibility: inherit; overflow: hidden; cursor: pointer; background-color: rgb(244, 205, 150); color: black; font-family: arial, 'comic sans ms', technical; font-size: 11px; font-weight: normal; font-style: normal; text-align: left; width: 195px; height: 17px; padding-left: 5px; padding-top: 3px; left: 1px; top: 1px;">
+        SIASG
+    </div>
+    <div style="position: absolute; visibility: inherit; overflow: hidden; cursor: pointer; background-color: rgb(244, 205, 150); color: black; font-family: arial, 'comic sans ms', technical; font-size: 11px; font-weight: normal; font-style: normal; text-align: left; width: 195px; height: 17px; padding-left: 5px; padding-top: 3px; left: 1px; top: 22px;">
+        Obras Públicas - Edificações - Práticas
+    </div>
+    <div style="position: absolute; visibility: inherit; overflow: hidden; cursor: default; background-color: rgb(244, 205, 150); color: black; font-family: arial, 'comic sans ms', technical; font-size: 11px; font-weight: normal; font-style: normal; text-align: left; width: 195px; height: 17px; padding-left: 5px; padding-top: 3px; left: 1px; top: 43px;">
+        Cotação Eletrônica<img src="/imagens/tri.gif"
+                               style="position: absolute; width: 5px; height: 10px; top: 5px; left: 193px;"></div>
+    <div style="position: absolute; visibility: inherit; overflow: hidden; cursor: default; background-color: rgb(244, 205, 150); color: black; font-family: arial, 'comic sans ms', technical; font-size: 11px; font-weight: normal; font-style: normal; text-align: left; width: 195px; height: 17px; padding-left: 5px; padding-top: 3px; left: 1px; top: 64px;">
+        Pregão<img src="/imagens/tri.gif" style="position: absolute; width: 5px; height: 10px; top: 5px; left: 193px;">
+    </div>
+    <div style="position: absolute; visibility: inherit; overflow: hidden; cursor: pointer; background-color: rgb(244, 205, 150); color: black; font-family: arial, 'comic sans ms', technical; font-size: 11px; font-weight: normal; font-style: normal; text-align: left; width: 195px; height: 17px; padding-left: 5px; padding-top: 3px; left: 1px; top: 85px;">
+        SCP
+    </div>
+    <div style="position: absolute; visibility: inherit; overflow: hidden; cursor: pointer; background-color: rgb(244, 205, 150); color: black; font-family: arial, 'comic sans ms', technical; font-size: 11px; font-weight: normal; font-style: normal; text-align: left; width: 195px; height: 17px; padding-left: 5px; padding-top: 3px; left: 1px; top: 106px;">
+        SIASGnet
+    </div>
+    <div style="position: absolute; visibility: inherit; overflow: hidden; cursor: pointer; background-color: rgb(244, 205, 150); color: black; font-family: arial, 'comic sans ms', technical; font-size: 11px; font-weight: normal; font-style: normal; text-align: left; width: 195px; height: 17px; padding-left: 5px; padding-top: 3px; left: 1px; top: 127px;">
+        Terceirização
+    </div>
+    <div style="position: absolute; visibility: inherit; overflow: hidden; cursor: pointer; background-color: rgb(244, 205, 150); color: black; font-family: arial, 'comic sans ms', technical; font-size: 11px; font-weight: normal; font-style: normal; text-align: left; width: 195px; height: 17px; padding-left: 5px; padding-top: 3px; left: 1px; top: 148px;">
+        RDC
+    </div>
+</div>
+<div style="position: absolute; visibility: hidden; background-color: black; z-index: 104; width: 122px; height: 43px; top: 0px; left: 0px;">
+    <div style="position: absolute; visibility: inherit; overflow: hidden; cursor: pointer; background-color: rgb(244, 205, 150); color: black; font-family: arial, 'comic sans ms', technical; font-size: 11px; font-weight: normal; font-style: normal; text-align: left; width: 115px; height: 17px; padding-left: 5px; padding-top: 3px; left: 1px; top: 1px;">
+        UASG
+    </div>
+    <div style="position: absolute; visibility: inherit; overflow: hidden; cursor: pointer; background-color: rgb(244, 205, 150); color: black; font-family: arial, 'comic sans ms', technical; font-size: 11px; font-weight: normal; font-style: normal; text-align: left; width: 115px; height: 17px; padding-left: 5px; padding-top: 3px; left: 1px; top: 22px;">
+        Fornecedor
+    </div>
+</div>
+<div style="position: absolute; visibility: hidden; background-color: black; z-index: 104; width: 232px; height: 85px; top: 0px; left: 0px;">
+    <div style="position: absolute; visibility: inherit; overflow: hidden; cursor: pointer; background-color: rgb(244, 205, 150); color: black; font-family: arial, 'comic sans ms', technical; font-size: 11px; font-weight: normal; font-style: normal; text-align: left; width: 225px; height: 17px; padding-left: 5px; padding-top: 3px; left: 1px; top: 1px;">
+        Presencial-Pregoeiro
+    </div>
+    <div style="position: absolute; visibility: inherit; overflow: hidden; cursor: pointer; background-color: rgb(244, 205, 150); color: black; font-family: arial, 'comic sans ms', technical; font-size: 11px; font-weight: normal; font-style: normal; text-align: left; width: 225px; height: 17px; padding-left: 5px; padding-top: 3px; left: 1px; top: 22px;">
+        Eletrônico-Pregoeiro
+    </div>
+    <div style="position: absolute; visibility: inherit; overflow: hidden; cursor: pointer; background-color: rgb(244, 205, 150); color: black; font-family: arial, 'comic sans ms', technical; font-size: 11px; font-weight: normal; font-style: normal; text-align: left; width: 225px; height: 17px; padding-left: 5px; padding-top: 3px; left: 1px; top: 43px;">
+        Eletrônico-Treinamento-Pregoeiro/Fornecedor
+    </div>
+    <div style="position: absolute; visibility: inherit; overflow: hidden; cursor: pointer; background-color: rgb(244, 205, 150); color: black; font-family: arial, 'comic sans ms', technical; font-size: 11px; font-weight: normal; font-style: normal; text-align: left; width: 225px; height: 17px; padding-left: 5px; padding-top: 3px; left: 1px; top: 64px;">
+        Eletrônico- Fornecedor
+    </div>
+</div>
+<div style="position: absolute; visibility: hidden; background-color: black; z-index: 102; width: 142px; height: 142px; top: 0px; left: 0px;">
+    <div style="position: absolute; visibility: inherit; overflow: hidden; cursor: pointer; background-color: rgb(244, 205, 150); color: black; font-family: arial, 'comic sans ms', technical; font-size: 11px; font-weight: normal; font-style: normal; text-align: left; width: 135px; height: 15px; padding-left: 5px; padding-top: 3px; left: 1px; top: 1px;">
+        SICAF
+    </div>
+    <div style="position: absolute; visibility: inherit; overflow: hidden; cursor: default; background-color: rgb(244, 205, 150); color: black; font-family: arial, 'comic sans ms', technical; font-size: 11px; font-weight: normal; font-style: normal; text-align: left; width: 135px; height: 15px; padding-left: 5px; padding-top: 3px; left: 1px; top: 20px;">
+        Pregões<img src="/imagens/tri.gif" style="position: absolute; width: 5px; height: 10px; top: 4px; left: 133px;">
+    </div>
+    <div style="position: absolute; visibility: inherit; overflow: hidden; cursor: default; background-color: rgb(244, 205, 150); color: black; font-family: arial, 'comic sans ms', technical; font-size: 11px; font-weight: normal; font-style: normal; text-align: left; width: 135px; height: 17px; padding-left: 5px; padding-top: 3px; left: 1px; top: 39px;">
+        Consultas<img src="/imagens/tri.gif"
+                      style="position: absolute; width: 5px; height: 10px; top: 5px; left: 133px;"></div>
+    <div style="position: absolute; visibility: inherit; overflow: hidden; cursor: default; background-color: rgb(244, 205, 150); color: black; font-family: arial, 'comic sans ms', technical; font-size: 11px; font-weight: normal; font-style: normal; text-align: left; width: 135px; height: 15px; padding-left: 5px; padding-top: 3px; left: 1px; top: 60px;">
+        Cotação Eletrônica<img src="/imagens/tri.gif"
+                               style="position: absolute; width: 5px; height: 10px; top: 4px; left: 133px;"></div>
+    <div style="position: absolute; visibility: inherit; overflow: hidden; cursor: pointer; background-color: rgb(244, 205, 150); color: black; font-family: arial, 'comic sans ms', technical; font-size: 11px; font-weight: normal; font-style: normal; text-align: left; width: 135px; height: 17px; padding-left: 5px; padding-top: 3px; left: 1px; top: 79px;">
+        Catalogo de Material
+    </div>
+    <div style="position: absolute; visibility: inherit; overflow: hidden; cursor: default; background-color: rgb(244, 205, 150); color: black; font-family: arial, 'comic sans ms', technical; font-size: 11px; font-weight: normal; font-style: normal; text-align: left; width: 135px; height: 17px; padding-left: 5px; padding-top: 3px; left: 1px; top: 100px;">
+        Sessão Pública<img src="/imagens/tri.gif"
+                           style="position: absolute; width: 5px; height: 10px; top: 5px; left: 133px;"></div>
+    <div style="position: absolute; visibility: inherit; overflow: hidden; cursor: default; background-color: rgb(244, 205, 150); color: black; font-family: arial, 'comic sans ms', technical; font-size: 11px; font-weight: normal; font-style: normal; text-align: left; width: 135px; height: 17px; padding-left: 5px; padding-top: 3px; left: 1px; top: 121px;">
+        RDC Eletrônico<img src="/imagens/tri.gif"
+                           style="position: absolute; width: 5px; height: 10px; top: 5px; left: 133px;"></div>
+</div>
+<div style="position: absolute; visibility: hidden; background-color: black; z-index: 103; width: 182px; height: 172px; top: 0px; left: 0px;">
+    <div style="position: absolute; visibility: inherit; overflow: hidden; cursor: pointer; background-color: rgb(244, 205, 150); color: black; font-family: arial, 'comic sans ms', technical; font-size: 11px; font-weight: normal; font-style: normal; text-align: left; width: 175px; height: 17px; padding-left: 5px; padding-top: 3px; left: 1px; top: 1px;">
+        Agendados
+    </div>
+    <div style="position: absolute; visibility: inherit; overflow: hidden; cursor: pointer; background-color: rgb(244, 205, 150); color: black; font-family: arial, 'comic sans ms', technical; font-size: 11px; font-weight: normal; font-style: normal; text-align: left; width: 175px; height: 17px; padding-left: 5px; padding-top: 3px; left: 1px; top: 22px;">
+        Em Andamento
+    </div>
+    <div style="position: absolute; visibility: inherit; overflow: hidden; cursor: pointer; background-color: rgb(244, 205, 150); color: black; font-family: arial, 'comic sans ms', technical; font-size: 11px; font-weight: normal; font-style: normal; text-align: left; width: 175px; height: 32px; padding-left: 5px; padding-top: 3px; left: 1px; top: 43px;">
+        Realizados, Pendentes de Recurso/Adjudicação/Homologação
+    </div>
+    <div style="position: absolute; visibility: inherit; overflow: hidden; cursor: pointer; background-color: rgb(244, 205, 150); color: black; font-family: arial, 'comic sans ms', technical; font-size: 11px; font-weight: normal; font-style: normal; text-align: left; width: 175px; height: 32px; padding-left: 5px; padding-top: 3px; left: 1px; top: 79px;">
+        Revogados, Anulados ou Abandonados
+    </div>
+    <div style="position: absolute; visibility: inherit; overflow: hidden; cursor: pointer; background-color: rgb(244, 205, 150); color: black; font-family: arial, 'comic sans ms', technical; font-size: 11px; font-weight: normal; font-style: normal; text-align: left; width: 175px; height: 17px; padding-left: 5px; padding-top: 3px; left: 1px; top: 115px;">
+        Consulta Ata/Anexos
+    </div>
+    <div style="position: absolute; visibility: inherit; overflow: hidden; cursor: pointer; background-color: rgb(244, 205, 150); color: black; font-family: arial, 'comic sans ms', technical; font-size: 11px; font-weight: normal; font-style: normal; text-align: left; width: 175px; height: 32px; padding-left: 5px; padding-top: 3px; left: 1px; top: 136px;">
+        Internacionais com Recursos do BID ou BIRD
+    </div>
+</div>
+<div style="position: absolute; visibility: hidden; background-color: black; z-index: 103; width: 252px; height: 230px; top: 0px; left: 0px;">
+    <div style="position: absolute; visibility: inherit; overflow: hidden; cursor: pointer; background-color: rgb(244, 205, 150); color: black; font-family: arial, 'comic sans ms', technical; font-size: 11px; font-weight: normal; font-style: normal; text-align: left; width: 245px; height: 17px; padding-left: 5px; padding-top: 3px; left: 1px; top: 1px;">
+        Atas de pregões/Anexos
+    </div>
+    <div style="position: absolute; visibility: inherit; overflow: hidden; cursor: default; background-color: rgb(244, 205, 150); color: black; font-family: arial, 'comic sans ms', technical; font-size: 11px; font-weight: normal; font-style: normal; text-align: left; width: 245px; height: 17px; padding-left: 5px; padding-top: 3px; left: 1px; top: 22px;">
+        Atas de Registro de Preços<img src="/imagens/tri.gif"
+                                       style="position: absolute; width: 5px; height: 10px; top: 5px; left: 243px;">
+    </div>
+    <div style="position: absolute; visibility: inherit; overflow: hidden; cursor: default; background-color: rgb(244, 205, 150); color: black; font-family: arial, 'comic sans ms', technical; font-size: 11px; font-weight: normal; font-style: normal; text-align: left; width: 245px; height: 17px; padding-left: 5px; padding-top: 3px; left: 1px; top: 43px;">
+        Extratos de Contratos<img src="/imagens/tri.gif"
+                                  style="position: absolute; width: 5px; height: 10px; top: 5px; left: 243px;"></div>
+    <div style="position: absolute; visibility: inherit; overflow: hidden; cursor: pointer; background-color: rgb(244, 205, 150); color: black; font-family: arial, 'comic sans ms', technical; font-size: 11px; font-weight: normal; font-style: normal; text-align: left; width: 245px; height: 17px; padding-left: 5px; padding-top: 3px; left: 1px; top: 64px;">
+        Resultados de Licitações
+    </div>
+    <div style="position: absolute; visibility: inherit; overflow: hidden; cursor: pointer; background-color: rgb(244, 205, 150); color: black; font-family: arial, 'comic sans ms', technical; font-size: 11px; font-weight: normal; font-style: normal; text-align: left; width: 245px; height: 15px; padding-left: 5px; padding-top: 3px; left: 1px; top: 85px;">
+        SICAF - CRC (Certificado de Registro Cadastral)
+    </div>
+    <div style="position: absolute; visibility: inherit; overflow: hidden; cursor: pointer; background-color: rgb(244, 205, 150); color: black; font-family: arial, 'comic sans ms', technical; font-size: 11px; font-weight: normal; font-style: normal; text-align: left; width: 245px; height: 17px; padding-left: 5px; padding-top: 3px; left: 1px; top: 104px;">
+        Linhas de Fornecimento
+    </div>
+    <div style="position: absolute; visibility: inherit; overflow: hidden; cursor: pointer; background-color: rgb(244, 205, 150); color: black; font-family: arial, 'comic sans ms', technical; font-size: 11px; font-weight: normal; font-style: normal; text-align: left; width: 245px; height: 17px; padding-left: 5px; padding-top: 3px; left: 1px; top: 125px;">
+        Aviso de Licitações
+    </div>
+    <div style="position: absolute; visibility: inherit; overflow: hidden; cursor: pointer; background-color: rgb(244, 205, 150); color: black; font-family: arial, 'comic sans ms', technical; font-size: 11px; font-weight: normal; font-style: normal; text-align: left; width: 245px; height: 17px; padding-left: 5px; padding-top: 3px; left: 1px; top: 146px;">
+        Aviso de Licitações do dia - Todas
+    </div>
+    <div style="position: absolute; visibility: inherit; overflow: hidden; cursor: pointer; background-color: rgb(244, 205, 150); color: black; font-family: arial, 'comic sans ms', technical; font-size: 11px; font-weight: normal; font-style: normal; text-align: left; width: 245px; height: 17px; padding-left: 5px; padding-top: 3px; left: 1px; top: 167px;">
+        Certidão Negativa
+    </div>
+    <div style="position: absolute; visibility: inherit; overflow: hidden; cursor: pointer; background-color: rgb(244, 205, 150); color: black; font-family: arial, 'comic sans ms', technical; font-size: 11px; font-weight: normal; font-style: normal; text-align: left; width: 245px; height: 17px; padding-left: 5px; padding-top: 3px; left: 1px; top: 188px;">
+        Unidades Administrativas de Serviços Gerais
+    </div>
+    <div style="position: absolute; visibility: inherit; overflow: hidden; cursor: pointer; background-color: rgb(244, 205, 150); color: black; font-family: arial, 'comic sans ms', technical; font-size: 11px; font-weight: normal; font-style: normal; text-align: left; width: 245px; height: 17px; padding-left: 5px; padding-top: 3px; left: 1px; top: 209px;">
+        IRP - Intenção de Registro de Preços
+    </div>
+</div>
+<div style="position: absolute; visibility: hidden; background-color: black; z-index: 104; width: 252px; height: 43px; top: 0px; left: 0px;">
+    <div style="position: absolute; visibility: inherit; overflow: hidden; cursor: pointer; background-color: rgb(244, 205, 150); color: black; font-family: arial, 'comic sans ms', technical; font-size: 11px; font-weight: normal; font-style: normal; text-align: left; width: 245px; height: 17px; padding-left: 5px; padding-top: 3px; left: 1px; top: 1px;">
+        Por Material/Serviço
+    </div>
+    <div style="position: absolute; visibility: inherit; overflow: hidden; cursor: pointer; background-color: rgb(244, 205, 150); color: black; font-family: arial, 'comic sans ms', technical; font-size: 11px; font-weight: normal; font-style: normal; text-align: left; width: 245px; height: 17px; padding-left: 5px; padding-top: 3px; left: 1px; top: 22px;">
+        Gestão de Ata SRP
+    </div>
+</div>
+<div style="position: absolute; visibility: hidden; background-color: black; z-index: 104; width: 252px; height: 43px; top: 0px; left: 0px;">
+    <div style="position: absolute; visibility: inherit; overflow: hidden; cursor: pointer; background-color: rgb(244, 205, 150); color: black; font-family: arial, 'comic sans ms', technical; font-size: 11px; font-weight: normal; font-style: normal; text-align: left; width: 245px; height: 17px; padding-left: 5px; padding-top: 3px; left: 1px; top: 1px;">
+        Contrato SISG
+    </div>
+    <div style="position: absolute; visibility: inherit; overflow: hidden; cursor: pointer; background-color: rgb(244, 205, 150); color: black; font-family: arial, 'comic sans ms', technical; font-size: 11px; font-weight: normal; font-style: normal; text-align: left; width: 245px; height: 17px; padding-left: 5px; padding-top: 3px; left: 1px; top: 22px;">
+        Contrato Não-SISG
+    </div>
+</div>
+<div style="position: absolute; visibility: hidden; background-color: black; z-index: 103; width: 182px; height: 43px; top: 0px; left: 0px;">
+    <div style="position: absolute; visibility: inherit; overflow: hidden; cursor: pointer; background-color: rgb(244, 205, 150); color: black; font-family: arial, 'comic sans ms', technical; font-size: 11px; font-weight: normal; font-style: normal; text-align: left; width: 175px; height: 17px; padding-left: 5px; padding-top: 3px; left: 1px; top: 1px;">
+        Em Andamento
+    </div>
+    <div style="position: absolute; visibility: inherit; overflow: hidden; cursor: pointer; background-color: rgb(244, 205, 150); color: black; font-family: arial, 'comic sans ms', technical; font-size: 11px; font-weight: normal; font-style: normal; text-align: left; width: 175px; height: 17px; padding-left: 5px; padding-top: 3px; left: 1px; top: 22px;">
+        Consultar Relatórios
+    </div>
+</div>
+<div style="position: absolute; visibility: hidden; background-color: black; z-index: 103; width: 142px; height: 43px; top: 0px; left: 0px;">
+    <div style="position: absolute; visibility: inherit; overflow: hidden; cursor: pointer; background-color: rgb(244, 205, 150); color: black; font-family: arial, 'comic sans ms', technical; font-size: 11px; font-weight: normal; font-style: normal; text-align: left; width: 135px; height: 17px; padding-left: 5px; padding-top: 3px; left: 1px; top: 1px;">
+        Consultar Licitação
+    </div>
+    <div style="position: absolute; visibility: inherit; overflow: hidden; cursor: pointer; background-color: rgb(244, 205, 150); color: black; font-family: arial, 'comic sans ms', technical; font-size: 11px; font-weight: normal; font-style: normal; text-align: left; width: 135px; height: 17px; padding-left: 5px; padding-top: 3px; left: 1px; top: 22px;">
+        Consultar Ata
+    </div>
+</div>
+<div style="position: absolute; visibility: hidden; background-color: black; z-index: 103; width: 182px; height: 43px; top: 0px; left: 0px;">
+    <div style="position: absolute; visibility: inherit; overflow: hidden; cursor: pointer; background-color: rgb(244, 205, 150); color: black; font-family: arial, 'comic sans ms', technical; font-size: 11px; font-weight: normal; font-style: normal; text-align: left; width: 175px; height: 17px; padding-left: 5px; padding-top: 3px; left: 1px; top: 1px;">
+        Consultar Licitações
+    </div>
+    <div style="position: absolute; visibility: inherit; overflow: hidden; cursor: pointer; background-color: rgb(244, 205, 150); color: black; font-family: arial, 'comic sans ms', technical; font-size: 11px; font-weight: normal; font-style: normal; text-align: left; width: 175px; height: 17px; padding-left: 5px; padding-top: 3px; left: 1px; top: 22px;">
+        Consultar Ata
+    </div>
+</div>
+<div style="position: absolute; visibility: hidden; background-color: black; z-index: 102; width: 162px; height: 58px; top: 0px; left: 0px;">
+    <div style="position: absolute; visibility: inherit; overflow: hidden; cursor: pointer; background-color: rgb(244, 205, 150); color: black; font-family: arial, 'comic sans ms', technical; font-size: 11px; font-weight: normal; font-style: normal; text-align: left; width: 155px; height: 15px; padding-left: 5px; padding-top: 3px; left: 1px; top: 1px;">
+        Serviços do Governo
+    </div>
+    <div style="position: absolute; visibility: inherit; overflow: hidden; cursor: pointer; background-color: rgb(244, 205, 150); color: black; font-family: arial, 'comic sans ms', technical; font-size: 11px; font-weight: normal; font-style: normal; text-align: left; width: 155px; height: 15px; padding-left: 5px; padding-top: 3px; left: 1px; top: 20px;">
+        Serviços aos Fornecedores
+    </div>
+    <div style="position: absolute; visibility: inherit; overflow: hidden; cursor: pointer; background-color: rgb(244, 205, 150); color: black; font-family: arial, 'comic sans ms', technical; font-size: 11px; font-weight: normal; font-style: normal; text-align: left; width: 155px; height: 15px; padding-left: 5px; padding-top: 3px; left: 1px; top: 39px;">
+        Serviços à Sociedade
+    </div>
+</div>
+</body>
+</html>
