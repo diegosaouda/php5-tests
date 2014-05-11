@@ -3,6 +3,7 @@
         "zendframework/zendframework": "*",
         "symfony/dom-crawler": "*",
         "symfony/css-selector": "*",
-        "guzzle/http": "*"
+        "guzzle/http": "*",
+	"videlalvaro/php-amqplib": "2.2.*"
     }
 }
