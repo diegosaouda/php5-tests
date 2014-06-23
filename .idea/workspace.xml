@@ -23,10 +23,19 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name=".gitignore" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/.gitignore">
+      <file leaf-file-name="1.block.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/doctrine/lock/postgres/1.block.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="1" column="7" selection-start="16" selection-end="16" vertical-scroll-proportion="0.035650622" vertical-offset="0" max-vertical-offset="561">
+            <state line="2" column="28" selection-start="35" selection-end="35" vertical-scroll-proportion="-1.3793104" vertical-offset="0" max-vertical-offset="720">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="2.try-read-in-block.php" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/public/doctrine/lock/postgres/2.try-read-in-block.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="2" column="28" selection-start="35" selection-end="35" vertical-scroll-proportion="0.071813285" vertical-offset="0" max-vertical-offset="560">
               <folding />
             </state>
           </provider>
@@ -87,8 +96,10 @@
         <option value="$PROJECT_DIR$/public/doctrine/lock/2.block.php" />
         <option value="$PROJECT_DIR$/public/doctrine/lock/README.md" />
         <option value="$PROJECT_DIR$/public/doctrine/lock/2.try-read-in-block.php" />
-        <option value="$PROJECT_DIR$/public/doctrine/lock/1.block.php" />
         <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/public/doctrine/lock/1.block.php" />
+        <option value="$PROJECT_DIR$/public/doctrine/lock/postgres/1.block.php" />
+        <option value="$PROJECT_DIR$/public/doctrine/lock/postgres/2.try-read-in-block.php" />
       </list>
     </option>
   </component>
@@ -175,6 +186,32 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="local.php5" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="php5-tests" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="public" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="doctrine" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="lock" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="postgres" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
       <pane id="Scope" />
@@ -194,6 +231,7 @@
       <recent name="X:\php5-tests\public\web-crawler" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="W:\php5-tests\public\doctrine\lock\postgres" />
       <recent name="X:\php5-tests\public\auth\http\basic" />
       <recent name="Z:\local.php5\public\auth\http" />
     </key>
@@ -334,16 +372,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/doctrine/lock/README.md">
+    <entry file="file://$PROJECT_DIR$/public/doctrine/lock/postgres/README.md">
       <provider selected="true" editor-type-id="text-editor">
         <state line="1" column="27" selection-start="43" selection-end="43" vertical-scroll-proportion="0.035650622" vertical-offset="0" max-vertical-offset="561">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/doctrine/lock/2.try-read-in-block.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="21" column="13" selection-start="418" selection-end="418" vertical-scroll-proportion="-14.4827585" vertical-offset="0" max-vertical-offset="560">
           <folding />
         </state>
       </provider>
@@ -357,16 +388,23 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/doctrine/lock/1.block.php">
+    <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="25" column="22" selection-start="529" selection-end="529" vertical-scroll-proportion="0.6050269" vertical-offset="163" max-vertical-offset="720">
+        <state line="1" column="7" selection-start="16" selection-end="16" vertical-scroll-proportion="0.035650622" vertical-offset="0" max-vertical-offset="561">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
+    <entry file="file://$PROJECT_DIR$/public/doctrine/lock/postgres/1.block.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="1" column="7" selection-start="16" selection-end="16" vertical-scroll-proportion="0.035650622" vertical-offset="0" max-vertical-offset="561">
+        <state line="2" column="28" selection-start="35" selection-end="35" vertical-scroll-proportion="-1.3793104" vertical-offset="0" max-vertical-offset="720">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/doctrine/lock/postgres/2.try-read-in-block.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="2" column="28" selection-start="35" selection-end="35" vertical-scroll-proportion="0.071813285" vertical-offset="0" max-vertical-offset="560">
           <folding />
         </state>
       </provider>
