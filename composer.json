@@ -4,6 +4,7 @@
         "symfony/dom-crawler": "*",
         "symfony/css-selector": "*",
         "guzzle/http": "*",
-	"videlalvaro/php-amqplib": "2.2.*"
+	    "videlalvaro/php-amqplib": "2.2.*",
+        "doctrine/orm": "*"
     }
 }
