@@ -5,6 +5,7 @@
         "symfony/css-selector": "*",
         "guzzle/http": "*",
 	    "videlalvaro/php-amqplib": "2.2.*",
-        "doctrine/orm": "*"
+        "doctrine/orm": "*",
+        "elasticsearch/elasticsearch": "~1.0"
     }
 }
