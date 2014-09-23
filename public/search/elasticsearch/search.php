@@ -9,21 +9,10 @@ require_once(__DIR__ . '/../../doctrine/bootstrap.php');
 $elasticClient = new Elasticsearch\Client();
 
 $params = array();
-$params['index'] = 'carga_orgao';
-$params['type']  = 'base';
+$params['index'] = 'elicitacao';
+$params['type']  = 'tb_carga_lote_item';
 
-$filter = array();
-
-
-$query = array();
-$query['match']['nm_endereco'] = 'Rua Dr. Siqueira, 273 - Parque Dom Bosco - Campos dos Goitacazes (RJ)';
-
-$params['body']['query']['filtered'] = array(
-    "filter" => $filter,
-    "query"  => $query
-);
-
-
+$params['body']['match_phrase']['nm_item']['query'] = 'GELÉIA MOCOTÓ';
 
 $queryResponse = $elasticClient->search($params);
 

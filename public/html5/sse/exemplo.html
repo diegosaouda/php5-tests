@@ -1,0 +1,27 @@
+<!DOCTYPE HTML>
+<html lang="pt-br">
+ <head>
+  <meta charset="UTF-8">
+  <title>Server Side Events - Exemplo Simples</title>
+ </head>
+ <body id="corpo">
+ </body>
+</html>
+<script type="text/JavaScript">
+// Verificando se há suporte para Server Side Events
+if(typeof(EventSource) !== "undefined")
+{
+  // Chamada do Server Side Event
+  var servidor = new EventSource("http://192.168.9.98:8081/cor.php");
+  // Utilizando o evento onMessage - tratamento do que será feito
+  // sempre que um "data" chegar.
+  servidor.onmessage = function(event)
+  {
+    document.getElementById("corpo").style.backgroundColor = event.data;
+  }
+}
+else 
+{
+  document.getElementById("corpo").innerHTML = "Este navegador não possui 26   suporte à Server Side Events";
+} 
+</script>

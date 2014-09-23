@@ -6,18 +6,18 @@
 
 require_once(__DIR__ . '/../../doctrine/bootstrap.php');
 
+$id = 'id_carga_licitacao';
+$index = 'tb_carga_licitacao';
+
+
 $elasticClient = new Elasticsearch\Client();
 
 $qb = (new DoctrineFactory())->createQueryBuilder();
 
-$qb->select('e.*')
-    ->from('tb_carga_orgao', 'e');
+$qb->select('e.*')->from($index, 'e');
 
-$uniq = 0;
-$i = 0;
-
-while(true) {
-    $qb->setFirstResult($i)
+for ($firstResult = 0; ;$firstResult+=1000) {
+    $qb->setFirstResult($firstResult)
         ->setMaxResults(1000);
 
     $documents = $qb->execute()->fetchAll();
@@ -25,22 +25,20 @@ while(true) {
         break;
     }
 
+    echo "index: {$firstResult}";
+    echo "\n";
+
     foreach ($documents as $document) {
+        unset($document['nm_item_busca']);
 
         $optionsIndex = array();
         $optionsIndex['body']  = $document;
-        $optionsIndex['index'] = 'carga_orgao';
-        $optionsIndex['type']  = 'base';
-        $optionsIndex['id']    = ++$uniq;
+        $optionsIndex['index'] = 'elicitacao';
+        $optionsIndex['type']  = $index;
+        $optionsIndex['id']    = $document[$id];
 
         $elasticClient->index($optionsIndex);
+        echo ".";
     }
-
-    echo "index: {$i}";
     echo "\n";
-
-    $i += 1000;
 }
-
-
-
