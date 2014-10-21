@@ -9,7 +9,6 @@ require_once(__DIR__ . '/../../doctrine/bootstrap.php');
 $id = 'id_carga_licitacao';
 $index = 'tb_carga_licitacao';
 
-
 $elasticClient = new Elasticsearch\Client();
 
 $qb = (new DoctrineFactory())->createQueryBuilder();

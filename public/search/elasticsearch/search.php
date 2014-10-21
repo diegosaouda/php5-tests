@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Indexando documentos
  */
@@ -10,9 +9,13 @@ $elasticClient = new Elasticsearch\Client();
 
 $params = array();
 $params['index'] = 'elicitacao';
-$params['type']  = 'tb_carga_lote_item';
+$params['type']  = 'mensagem';
+$params['size'] = 50;
 
-$params['body']['match_phrase']['nm_item']['query'] = 'GELÉIA MOCOTÓ';
+//$params['body']['match_phrase']['nm_item']['query'] = 'GELÉIA MOCOTÓ';
+$params['body']['query']['match']['mensagem'] = 'foi';
+$params['body']['fields'] = array('_source', '_timestamp');
+
 
 $queryResponse = $elasticClient->search($params);
 
