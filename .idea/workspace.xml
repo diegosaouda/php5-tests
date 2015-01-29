@@ -22,7 +22,26 @@
     <favorites_list name="local.php5" />
   </component>
   <component name="FileEditorManager">
-    <leaf />
+    <leaf>
+      <file leaf-file-name="SoundLike.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/soundlike/SoundLike.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="63" column="1" selection-start="1790" selection-end="1790" vertical-scroll-proportion="-13.966666" vertical-offset="904" max-vertical-offset="1449">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="teste.php" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/public/soundlike/teste.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="8" column="50" selection-start="267" selection-end="267" vertical-scroll-proportion="0.315197" vertical-offset="0" max-vertical-offset="533">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FindManager">
     <FindUsagesManager>
@@ -32,8 +51,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/public/mongo/lock/add.php" />
-        <option value="$PROJECT_DIR$/public/mongo/lock/1.find-block.php" />
         <option value="$PROJECT_DIR$/public/mongo/lock/2.find-block.php" />
         <option value="$PROJECT_DIR$/public/mongo/lock/Monitor.php" />
         <option value="$PROJECT_DIR$/public/fila/por-session/server.php" />
@@ -83,6 +100,8 @@
         <option value="$PROJECT_DIR$/composer.json" />
         <option value="$PROJECT_DIR$/public/teste/mssql.php" />
         <option value="$PROJECT_DIR$/public/tokenizer/token_get_all.php" />
+        <option value="$PROJECT_DIR$/public/soundlike/SoundLike.php" />
+        <option value="$PROJECT_DIR$/public/soundlike/teste.php" />
       </list>
     </option>
   </component>
@@ -119,6 +138,7 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -231,13 +251,12 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="tokenizer" />
+              <option name="myItemId" value="soundlike" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -246,6 +265,7 @@
     <property name="LayoutCode.rearrangeEntriesHTML" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="DefaultHtmlFileTemplate" value="Html5" />
+    <property name="LayoutCode.rearrangeEntriesPHP" value="false" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -289,15 +309,15 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
-    <editor active="false" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2613293" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.26510575" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3291536" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -331,16 +351,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/vendor/zendframework/zendframework/library/Zend/File/Transfer/Transfer.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="32" column="20" selection-start="877" selection-end="877" vertical-scroll-proportion="0.0" vertical-offset="672" max-vertical-offset="2394" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/upload/zend/http.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="1" column="39" selection-start="98" selection-end="108" vertical-scroll-proportion="0.0" vertical-offset="21" max-vertical-offset="189" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/vendor/zendframework/zendframework/library/Zend/File/Transfer/Adapter/Http.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="143" column="29" selection-start="4120" selection-end="4120" vertical-scroll-proportion="0.0" vertical-offset="3003" max-vertical-offset="9891" />
@@ -584,6 +594,20 @@
     <entry file="file://$PROJECT_DIR$/composer.json">
       <provider selected="true" editor-type-id="text-editor">
         <state line="16" column="32" selection-start="570" selection-end="570" vertical-scroll-proportion="0.60431653" vertical-offset="0" max-vertical-offset="556" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/soundlike/SoundLike.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="63" column="1" selection-start="1790" selection-end="1790" vertical-scroll-proportion="-13.966666" vertical-offset="904" max-vertical-offset="1449">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/soundlike/teste.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="8" column="50" selection-start="267" selection-end="267" vertical-scroll-proportion="0.315197" vertical-offset="0" max-vertical-offset="533">
+          <folding />
+        </state>
       </provider>
     </entry>
   </component>
