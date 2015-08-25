@@ -1,3 +1,4 @@
 vendor/*
 .idea/*
 public/doctrine/config/*.php
+public/mail/config.php

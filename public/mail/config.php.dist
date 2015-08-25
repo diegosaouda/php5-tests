@@ -1,0 +1,14 @@
+<?php
+
+return [
+    'name' => '',
+    'host' => '',
+    'port' => '587',
+    'connection_class' => 'login',
+    'connection_config' => [
+        'username' => '',
+        'password' => '',
+    ],
+    'from' => ['email' => 'Nome do Email'],
+    'to' => ['email', 'email' => 'Nome do Email']
+];

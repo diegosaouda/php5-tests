@@ -16,5 +16,5 @@ foreach ($encodingList as $encoding) {
 	echo mb_strtoupper($content);
 	
 	echo "\nmb_strtolower: ";
-	echo mb_strtolower($content);	
+	echo mb_strtolower($content);
 }
